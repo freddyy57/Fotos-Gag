@@ -1,14 +1,55 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="dark">
     <ion-title>
-      Ionic Blank
+      8gag
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+  <ion-card *ngFor="let post of _cap.imagenes">
+  <ion-card-header text-center>
+    {{post.titulo}}
+  </ion-card-header>
+  <img [src]="post.img">
+  <ion-card-content>
+    <!-- Add card content here! -->
+    <p text-center>@Alf Leyza</p>
+  </ion-card-content>
+
+  <ion-row>
+    <ion-col col-7></ion-col>
+    <ion-col  col-2 text-right>
+      <button ion-button clear color="primary" icon-left
+              (click)="compartirFace(post)">
+        <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>
+
+      </button>
+    </ion-col>
+    <ion-col col-3 text-left>
+      <button ion-button clear color="primary" icon-left
+               color="primary"
+              (click)="compartirWhats(post)">
+        <ion-icon color="whatsapp" ios="logo-whatsapp" md="logo-whatsapp"></ion-icon>
+
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-card>
+
+
+
+<!--Botón-->
+  <ion-fab bottom right>
+    <button ion-fab color="whatsapp"
+            (click)="mostrar_modal()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
+   <ion-infinite-scroll (ionInfinite)="doInfinite($event)"
+                         [enabled]="hayMas">
+     <ion-infinite-scroll-content></ion-infinite-scroll-content>
+   </ion-infinite-scroll>
+
 </ion-content>
